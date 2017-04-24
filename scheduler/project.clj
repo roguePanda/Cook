@@ -43,7 +43,7 @@
                  [org.clojure/data.priority-map "0.0.5"]
                  [swiss-arrows "1.0.0"]
                  [riddley "0.1.10"]
-                 [org.apache.mesos/mesos "1.0.1"]
+                 [org.apache.mesos/mesos "1.2.0"]
                  [com.netflix.fenzo/fenzo-core "0.10.0"
                   :exclusions [org.apache.mesos/mesos
                                com.fasterxml.jackson.core/jackson-core
@@ -87,7 +87,7 @@
 
                  ;;External system integrations
                  [me.raynes/conch "0.5.2"]
-                 [wyegelwe/mesomatic "1.0.1-r0-SNAPSHOT"]
+                 [bnavetta/mesomatic "1.2.0-r0"]
                  [org.clojure/tools.nrepl "0.2.3"]
 
                  ;;Ring
@@ -102,7 +102,7 @@
                  [liberator "0.14.1"]
 
                  ;;Databases
-                 [com.datomic/datomic-free "0.9.5206"
+                 [com.datomic/datomic-pro "0.9.5561"
                   :exclusions [org.slf4j/slf4j-api
                                com.fasterxml.jackson.core/jackson-core
                                org.slf4j/jcl-over-slf4j
@@ -110,6 +110,7 @@
                                org.slf4j/log4j-over-slf4j
                                org.slf4j/slf4j-nop
                                joda-time]]
+                 [org.postgresql/postgresql "9.3-1102-jdbc41"]
                  [org.apache.curator/curator-framework "2.7.1"
                   :exclusions [io.netty/netty]]
                  [org.apache.curator/curator-recipes "2.7.1"
