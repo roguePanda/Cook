@@ -214,6 +214,11 @@
   {"DOCKER" :container-type-docker
    "MESOS" :container-type-mesos})
 
+(def cook-image-type->mesomatic-image-type
+  "Converts the string representation of an image type to a value mesomatic understands"
+  {"DOCKER" :image-type-docker
+   "APPC" :image-type-appc})
+
 (defn task-info->mesos-message
   "Given a clojure data structure (based on Cook's internal data format for jobs),
    which has already been decorated with everything we need to know about
@@ -226,6 +231,15 @@
         container (when container
                     (-> container
                         (update :type cook-container-type->mesomatic-container-type)
+                        (update :mesos
+                                (fn [mesos]
+                                  (if (:image mesos)
+                                    (update mesos
+                                            :image
+                                            (fn [image]
+                                                (update image :type cook-image-type->mesomatic-image-type)
+                                                image))
+                                    mesos)))
                         (update :docker
                                 (fn [docker]
                                   (if (:network docker)
@@ -268,4 +282,3 @@
          (add-ports-to-task-info combined-resource-pool)
          (map #(assoc % :slave-id slave-id))
          (map task-info->mesos-message))))
-

@@ -116,6 +116,15 @@
    :container-port (s/both s/Int (s/pred #(<= 0 % 65536) 'between-0-and-65536))
    (s/optional-key :protocol) s/Str})
 
+(def MesosImage
+  "Schema for a Mesos Image"
+  {:type s/Str
+   (s/optional-key :docker) {:name s/Str}})
+
+(def MesosInfo
+  "Schema for a MesosInfo"
+  {(s/optional-key :image) MesosImage})
+
 (def DockerInfo
   "Schema for a DockerInfo"
   {:image s/Str
@@ -134,6 +143,7 @@
   "Schema for a Mesos Container"
   {:type s/Str
    (s/optional-key :docker) DockerInfo
+   (s/optional-key :mesos) MesosInfo
    (s/optional-key :volumes) [Volume]})
 
 (def Uri
